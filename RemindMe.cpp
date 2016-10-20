@@ -35,8 +35,9 @@ void listQ(){
     read();
 }
 int main(){
-    printf("RemindMe v0.6\n\n");
+    printf("RemindMe v0.7\n\n");
     read();
+    pop();write();
     show_instru();
     string s;
     while(cin>>s){
