@@ -2,6 +2,7 @@
 #include<iostream>
 #include<queue>
 #include<string>
+#define CMT //
 using namespace std;
 queue<string> Q1,Q2,Q3;
 int N12,N23;
@@ -40,21 +41,24 @@ int main(){
     string s;
     while(cin>>s){
             if(s=="pop"){
-                printf("--input = pop\n");
-                pop();
+                //printf("--input = pop\n");
+                pop();write();
             }
             else if(s=="changeN"){
-                printf("--input = changeN\n");
+                //printf("--input = changeN\n");
             }
             else if(s=="push"){
-                printf("--input = push\n");
+                //printf("--input = push\n");
             }
             else if(s=="delete"){
-                printf("--input = delete\n");
+                //printf("--input = delete\n");
             }
             else if(s=="list"){
-                printf("--input = list\n");
+                //printf("--input = list\n");
                 listQ();
+            }
+            else if(s=="exit"){
+                break;
             }
             else{
                 printf("can't find such command, please check input\n");
@@ -64,7 +68,7 @@ int main(){
     return 0;
 }
 void read(){
-    printf("--read file\n");
+    //printf("--read file\n");
     FILE *f;
 	f=fopen("data.txt","r");
 	//clear old
@@ -96,26 +100,26 @@ void read(){
     return;
 }
 void write(){
-    printf("--write file\n");
+    //printf("--write file\n");
 
     FILE *f;
-	f=fopen("data.txt","r");
+	f=fopen("data.txt","w");
 
     while(Q1.size()){
         fprintf(f,"%s\n",Q1.front().c_str());
         Q1.pop();
     }
-    fprintf(f,"END");
+    fprintf(f,"END\n\n");
     while(Q2.size()){
         fprintf(f,"%s\n",Q2.front().c_str());
         Q2.pop();
     }
-    fprintf(f,"END");
+    fprintf(f,"END\n\n");
     while(Q3.size()){
         fprintf(f,"%s\n",Q3.front().c_str());
         Q3.pop();
     }
-    fprintf(f,"END");
+    fprintf(f,"END\n\n");
     fclose(f);
     read();
 }
@@ -128,6 +132,7 @@ void show_instru(){
     printf("push X <string> -> push errand to QueueX\n");
     printf("delete X Y \t-> delete errand Y in QueueX\n");
     printf("list \t\t-> list all errands\n");
+    printf("exit \t\t-> end this program\n");
     puts("------------------------------------------------------------------");
 }
 void pop(){
