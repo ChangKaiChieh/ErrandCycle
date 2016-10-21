@@ -5,39 +5,14 @@
 #define CMT //
 using namespace std;
 queue<string> Q1,Q2,Q3;
-int N12,N23;
 void read();
 void write();
 void show_instru();
 void pop();
-void listQ(){
-    int cnt=0;
-    cout<<"Queue 1"<<endl;
-    while(Q1.size()){
-        cout<<'['<<cnt<<']'<<Q1.front()<<endl;
-        Q1.pop();
-        cnt++;
-    }
-    cnt=0;
-    cout<<"\nQueue 2"<<endl;
-    while(Q2.size()){
-        cout<<'['<<cnt<<']'<<Q2.front()<<endl;
-        Q2.pop();
-        cnt++;
-    }
-    cnt=0;
-    cout<<"\nQueue 3"<<endl;
-    while(Q3.size()){
-        cout<<'['<<cnt<<']'<<Q3.front()<<endl;
-        Q3.pop();
-        cnt++;
-    }
-    read();
-}
+void listQ();
 int main(){
-    printf("RemindMe v0.7\n\n");
+    printf("RemindMe v0.8\n\n");
     read();
-    pop();write();
     show_instru();
     string s;
     while(cin>>s){
@@ -129,9 +104,9 @@ void show_instru(){
     puts("------------------------------------------------------------------");
     printf("Instructions:\n");
     printf("pop \t\t-> pop an errand\n");
-    printf("changeN X Y \t-> change QueueX order to Y (X = 2 or 3)\n");
-    printf("push X <string> -> push errand to QueueX\n");
-    printf("delete X Y \t-> delete errand Y in QueueX\n");
+    printf("(x)changeN X Y \t-> change QueueX order to Y (X = 2 or 3)\n");
+    printf("(x)push X <string> -> push errand to QueueX\n");
+    printf("(x)delete X Y \t-> delete errand Y in QueueX\n");
     printf("list \t\t-> list all errands\n");
     printf("exit \t\t-> end this program\n");
     puts("------------------------------------------------------------------");
@@ -148,4 +123,28 @@ void pop(){
         }
     }
     cout<<next<<endl;
+}
+void listQ(){
+    int cnt=0;
+    cout<<"Queue 1"<<endl;
+    while(Q1.size()){
+        cout<<'['<<cnt<<']'<<Q1.front()<<endl;
+        Q1.pop();
+        cnt++;
+    }
+    cnt=0;
+    cout<<"\nQueue 2"<<endl;
+    while(Q2.size()){
+        cout<<'['<<cnt<<']'<<Q2.front()<<endl;
+        Q2.pop();
+        cnt++;
+    }
+    cnt=0;
+    cout<<"\nQueue 3"<<endl;
+    while(Q3.size()){
+        cout<<'['<<cnt<<']'<<Q3.front()<<endl;
+        Q3.pop();
+        cnt++;
+    }
+    read();
 }
