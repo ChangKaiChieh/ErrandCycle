@@ -1,8 +1,8 @@
 #include<cstdio>
+#include<cstdlib>
 #include<iostream>
 #include<queue>
 #include<string>
-#define CMT //
 using namespace std;
 queue<string> Q1,Q2,Q3;
 void read();
@@ -10,36 +10,24 @@ void write();
 void show_instru();
 void pop();
 void listQ();
+void del();
+void push();
+
 int main(){
-    printf("RemindMe v0.8\n\n");
+    printf("RemindMe v1.0\tbyªL¤j©ú 2016.10.23\n\n");
     read();
     show_instru();
     string s;
     while(cin>>s){
-            if(s=="pop"){
-                //printf("--input = pop\n");
-                pop();write();
-            }
-            else if(s=="changeN"){
-                //printf("--input = changeN\n");
-            }
-            else if(s=="push"){
-                //printf("--input = push\n");
-            }
-            else if(s=="delete"){
-                //printf("--input = delete\n");
-            }
-            else if(s=="list"){
-                //printf("--input = list\n");
-                listQ();
-            }
-            else if(s=="exit"){
-                break;
-            }
-            else{
-                printf("can't find such command, please check input\n");
-            }
-        }
+        if(s=="pop"||s=="1")pop(),write();
+        else if(s=="push"||s=="2")push(),write();
+        else if(s=="del"||s=="3")del(),write();
+        else if(s=="list"||s=="4")listQ();
+        else if(s=="exit"||s=="5")break;
+        else if(s=="track"||s=="6")system("explorer .");
+        else printf("can't find such command, please check input\n");
+        show_instru();
+    }
 
     return 0;
 }
@@ -49,8 +37,8 @@ void read(){
 	f=fopen("data.txt","r");
 	//clear old
 	while(Q1.size())Q1.pop();
-	while(Q2.size())Q1.pop();
-	while(Q3.size())Q1.pop();
+	while(Q2.size())Q2.pop();
+	while(Q3.size())Q3.pop();
 	// read until "END"
 	char tmp[100];
 	string next;
@@ -100,15 +88,14 @@ void write(){
     read();
 }
 void show_instru(){
-
     puts("------------------------------------------------------------------");
-    printf("Instructions:\n");
-    printf("pop \t\t-> pop an errand\n");
-    printf("(x)changeN X Y \t-> change QueueX order to Y (X = 2 or 3)\n");
-    printf("(x)push X <string> -> push errand to QueueX\n");
-    printf("(x)delete X Y \t-> delete errand Y in QueueX\n");
-    printf("list \t\t-> list all errands\n");
-    printf("exit \t\t-> end this program\n");
+    //puts("Instructions:");
+    puts("[1]pop \t\t-> pop an errand");
+    puts("[2]push X <string> -> put errand into Box[X]");
+    puts("[3]del X Y \t-> delete errand Y from Box[X]");
+    puts("[4]list \t-> list all errands");
+    puts("[5]exit \t-> end this program");
+    puts("[6]track dir\t-> open explorer to the directory of this program");
     puts("------------------------------------------------------------------");
 }
 void pop(){
@@ -124,23 +111,86 @@ void pop(){
     }
     cout<<next<<endl;
 }
+void push(){
+    int X;
+    string input;
+    cin>>X>>input;
+    cout<<"put <"<<input<<"> into Box "<<X<<endl;
+    if(X==1)Q1.push(input);
+    else if(X==2)Q2.push(input);
+    else if(X==3)Q3.push(input);
+    else puts("parameter error");
+}
+void del(){
+    int X,Y,cnt=0;
+    cin>>X>>Y;
+    queue<string> tmp;
+    if(X==1){
+        while(Q1.size()){
+            if(Q1.front()=="++"){tmp.push(Q1.front()),Q1.pop();continue;}
+            if(cnt==Y){
+                cout<<"delete "<<Q1.front()<<endl;
+                Q1.pop();
+            }
+            if(Q1.size())tmp.push(Q1.front()),Q1.pop();
+            cnt++;
+        }
+        while(tmp.size()){
+            Q1.push(tmp.front());
+            tmp.pop();
+        }
+    }
+    else if(X==2){
+        while(Q2.size()){
+            if(Q2.front()=="++"){tmp.push(Q2.front()),Q2.pop();continue;}
+            if(cnt==Y){
+                cout<<"delete "<<Q2.front()<<endl;
+                Q2.pop();
+            }
+            if(Q2.size())tmp.push(Q2.front()),Q2.pop();
+            cnt++;
+        }
+        while(tmp.size()){
+            Q2.push(tmp.front());
+            tmp.pop();
+        }
+    }
+    else if(X==3){
+        while(Q3.size()){
+            if(Q3.front()=="++"){tmp.push(Q3.front()),Q3.pop();continue;}
+            if(cnt==Y){
+                cout<<"delete "<<Q3.front()<<endl;
+                Q3.pop();
+            }
+            if(Q3.size())tmp.push(Q3.front()),Q3.pop();
+            cnt++;
+        }
+        while(tmp.size()){
+            Q3.push(tmp.front());
+            tmp.pop();
+        }
+    }
+}
 void listQ(){
+    read();
     int cnt=0;
-    cout<<"Queue 1"<<endl;
+    cout<<"Box 1"<<endl;
     while(Q1.size()){
+        if(Q1.front()=="++"){Q1.pop();continue;}
         cout<<'['<<cnt<<']'<<Q1.front()<<endl;
         Q1.pop();
         cnt++;
     }
     cnt=0;
-    cout<<"\nQueue 2"<<endl;
+    cout<<"\nBox 2"<<endl;
     while(Q2.size()){
+        if(Q2.front()=="++"){Q2.pop();continue;}
         cout<<'['<<cnt<<']'<<Q2.front()<<endl;
         Q2.pop();
         cnt++;
     }
     cnt=0;
-    cout<<"\nQueue 3"<<endl;
+    cout<<"\nBox 3"<<endl;
     while(Q3.size()){
         cout<<'['<<cnt<<']'<<Q3.front()<<endl;
         Q3.pop();
