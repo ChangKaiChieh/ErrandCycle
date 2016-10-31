@@ -14,7 +14,7 @@ void del();
 void push();
 
 int main(){
-    printf("RemindMe v1.0\tbyªL¤j©ú 2016.10.23\n\n");
+    printf("RemindMe v1.1\tby Johnny Chang 2016.10.31\n\n");
     read();
     show_instru();
     string s;
@@ -129,8 +129,15 @@ void del(){
         while(Q1.size()){
             if(Q1.front()=="++"){tmp.push(Q1.front()),Q1.pop();continue;}
             if(cnt==Y){
-                cout<<"delete "<<Q1.front()<<endl;
-                Q1.pop();
+                cout<<"comfirm to delete "<<Q1.front()<<" ?"<<endl;
+                cout<<"Y/N?"<<endl;
+                string input;
+                cin>>input;
+                if(input=="Y"){
+                    cout<<"delete "<<Q1.front()<<endl;
+                    Q1.pop();
+                }
+                else cout<<"canceled"<<endl;
             }
             if(Q1.size())tmp.push(Q1.front()),Q1.pop();
             cnt++;
@@ -144,8 +151,15 @@ void del(){
         while(Q2.size()){
             if(Q2.front()=="++"){tmp.push(Q2.front()),Q2.pop();continue;}
             if(cnt==Y){
-                cout<<"delete "<<Q2.front()<<endl;
-                Q2.pop();
+                cout<<"comfirm to delete "<<Q2.front()<<" ?"<<endl;
+                cout<<"Y/N?"<<endl;
+                string input;
+                cin>>input;
+                if(input=="Y"){
+                    cout<<"delete "<<Q2.front()<<endl;
+                    Q2.pop();
+                }
+                else cout<<"canceled"<<endl;
             }
             if(Q2.size())tmp.push(Q2.front()),Q2.pop();
             cnt++;
@@ -159,8 +173,15 @@ void del(){
         while(Q3.size()){
             if(Q3.front()=="++"){tmp.push(Q3.front()),Q3.pop();continue;}
             if(cnt==Y){
-                cout<<"delete "<<Q3.front()<<endl;
-                Q3.pop();
+                cout<<"comfirm to delete "<<Q3.front()<<" ?"<<endl;
+                cout<<"Y/N?"<<endl;
+                string input;
+                cin>>input;
+                if(input=="Y"){
+                    cout<<"delete "<<Q3.front()<<endl;
+                    Q3.pop();
+                }
+                else cout<<"canceled"<<endl;
             }
             if(Q3.size())tmp.push(Q3.front()),Q3.pop();
             cnt++;
